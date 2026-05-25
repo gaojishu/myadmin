@@ -1,38 +1,58 @@
 import type { Metadata } from "next";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { Geist, Geist_Mono } from "next/font/google";
-import AntdProvider from "./providers/antd-provider";
+// import { Geist, Geist_Mono } from "next/font/google";
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { ConfigProvider, App } from 'antd';
+import AntdThemeConfig from "@/config/theme.config";
+import GlobalProvider from '@/components/GlobalProvider';
+import locale from 'antd/locale/zh_CN';
+
 import "./globals.css";
+import ReduxProvider from "@/components/ReduxProvider";
+import { GlobalRouteListener } from "@/components/Listener/GlobalRouteListener";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
-  title: "MyAdmin",
-  description: "Admin dashboard powered by Ant Design",
+  title: "xkl",
+  description: "xkl antd",
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  children
+}: React.PropsWithChildren) {
+  console.log('RootLayout 只运行一次');
+
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <AntdRegistry>
-          <AntdProvider>{children}</AntdProvider>
-        </AntdRegistry>
+    <html lang="zh-CN">
+      <body
+        className={`antialiased`}
+      >
+        <ReduxProvider>
+
+          <ConfigProvider theme={AntdThemeConfig} locale={locale}>
+            <App message={{ maxCount: 1, duration: 3 }}>
+              <GlobalProvider />
+              {/* 全局路由监听器 */}
+              <GlobalRouteListener />
+              <AntdRegistry>
+
+                {children}
+
+              </AntdRegistry>
+            </App>
+          </ConfigProvider>
+
+        </ReduxProvider>
+
+
       </body>
     </html>
   );

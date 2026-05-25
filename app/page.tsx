@@ -1,9 +1,12 @@
-import HomeContent from "./home-content";
+import AntdLayout from "@/components/AntdLayout";
+import { Card } from "antd";
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="flex min-h-full flex-col">
-      <HomeContent />
-    </div>
-  );
+    <AntdLayout>
+      <Card>
+        欢迎使用
+      </Card>
+    </AntdLayout>
+  )
 }

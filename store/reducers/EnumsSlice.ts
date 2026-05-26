@@ -3,31 +3,8 @@ import type { EnumsData } from '@/types';
 
 
 const initialState: EnumsData = {
-    permissionTypeEnum: [],
-    adminDisabledStatusEnum: [],
-    agreementTypeEnum: [],
-    filesTypeEnum: [],
-    filesVisibilityEnum: [],
-    asyncJobStatusEnum: [],
-    asyncJobQueueEnum: [],
-    configKeyEnum: [],
-    userGenderEnum: [],
-    userStatusEnum: [],
-    userSnsPlatformEnum: [],
-    userSnsClientTypeEnum: [],
-    aiModelTypeEnum: [],
-    aiModelStatusEnum: [],
-    aiModelProviderEnum: [],
-    bizTypeEnum: [],
-    paymentStatusEnum: [],
-    paymentProviderEnum: [],
-    paymentChannelEnum: [],
-    paymentMethodEnum: [],
-    paymentBizTypeEnum: [],
-    paymentRefundStatusEnum: [],
-    benefitKeyEnum: [],
-    benefitTypeEnum: [],
-    productTypeEnum: [],
+    PermissionTypeEnum: [],
+    AdminDisabledStatusEnum: [],
 };
 
 const EnumsSlice = createSlice({

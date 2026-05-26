@@ -27,7 +27,6 @@ export default function Page() {
     const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
         const data = await authLogin(values);
 
-        return
         dispatch(authLoginStateUpdate(data));
 
         router.push('/');
@@ -74,6 +73,7 @@ export default function Page() {
                     <Form.Item<FieldType>
                         label="用户名"
                         name="username"
+                        rules={[{ required: true, message: 'Please input your username!' }]}
 
                     >
                         <Input />

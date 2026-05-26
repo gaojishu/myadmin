@@ -3,7 +3,7 @@ import http from "@/utils/http";
 
 export async function filesCategoryRecords() {
     const res = await http.get<ApiResult<FilesCategoryData[]>>({
-        url: `/files-category/list`,
+        url: `/admin/files-category/list`,
         params: {},
     });
 
@@ -12,7 +12,7 @@ export async function filesCategoryRecords() {
 
 export async function filesCategoryUpdate(data: FilesCategoryUpdate) {
     const res = await http.post<ApiResult<null>>({
-        url: `/files-category/update`,
+        url: `/admin/files-category/update`,
         params: {},
         data: data,
     });
@@ -22,7 +22,7 @@ export async function filesCategoryUpdate(data: FilesCategoryUpdate) {
 
 export async function filesCategoryCreate(data: FilesCategoryCreate) {
     const res = await http.post<ApiResult<null>>({
-        url: `/files-category/create`,
+        url: `/admin/files-category/create`,
         params: {},
         data: data,
     });
@@ -32,7 +32,7 @@ export async function filesCategoryCreate(data: FilesCategoryCreate) {
 
 export async function filesCategoryDelete(id: string) {
     const res = await http.get<ApiResult<null>>({
-        url: `/files-category/delete?id=${id}`,
+        url: `/admin/files-category/delete?id=${id}`,
         params: {},
     });
 

@@ -4,7 +4,7 @@ import { setEnumsState } from "./EnumsService";
 
 export async function enumsList() {
     const res = await http.get<ApiResult<EnumsData>>({
-        url: `/enums/list`,
+        url: `/common/enums/list`,
         params: {},
     });
     setEnumsState(res.data);

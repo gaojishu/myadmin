@@ -3,7 +3,7 @@ export * from './filesCategory';
 export * from './auth';
 export * from './notice';
 export * from './opLog';
-export * from './enums';
+export * from './common/enums';
 export * from './admin';
 export * from './permission';
 export * from './role';

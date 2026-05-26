@@ -6,7 +6,7 @@ import type { SortOrder } from "antd/es/table/interface";
 
 export async function filesPage(params: FilesPageParams, sort: Record<string, SortOrder>) {
     const res = await http.post<ApiResult<Pageable<FilesData>>>({
-        url: `/files/page`,
+        url: `/admin/files/page`,
         params: {},
         data: {
             params, sort
@@ -18,7 +18,7 @@ export async function filesPage(params: FilesPageParams, sort: Record<string, So
 
 export async function filesCreate(data: FilesCreate) {
     const res = await http.post<ApiResult<null>>({
-        url: `/files/create`,
+        url: `/admin/files/create`,
         params: {},
         data: data,
     });
@@ -28,7 +28,7 @@ export async function filesCreate(data: FilesCreate) {
 
 export async function filesUpdate(data: FilesUpdate) {
     const res = await http.post<ApiResult<null>>({
-        url: `/files/update`,
+        url: `/admin/files/update`,
         params: {},
         data: data,
     });
@@ -38,7 +38,7 @@ export async function filesUpdate(data: FilesUpdate) {
 
 export async function filesHash(hash: string) {
     const res = await http.get<ApiResult<null>>({
-        url: `/files/hash?hash=${hash}`,
+        url: `/admin/files/hash?hash=${hash}`,
         params: {},
     });
 
@@ -47,7 +47,7 @@ export async function filesHash(hash: string) {
 
 export async function filesDelete(keys: string[]) {
     const res = await http.post<ApiResult<null>>({
-        url: `/files/delete`,
+        url: `/admin/files/delete`,
         params: {},
         data: {
             keys: keys

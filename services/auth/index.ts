@@ -4,7 +4,7 @@ import { logout, setAuthInfoState, setAuthPermissionState } from "./authService"
 
 export async function authLogin(data: AuthLoginRequest) {
     const res = await http.post<ApiResult<AuthLoginToken>>({
-        url: `/auth/login`,
+        url: `/admin/auth/login`,
         params: {},
         data: data,
     });
@@ -14,7 +14,7 @@ export async function authLogin(data: AuthLoginRequest) {
 
 export async function authLogout() {
     const res = await http.get<ApiResult<null>>({
-        url: `/auth/logout`,
+        url: `/admin/auth/logout`,
         params: {},
     });
 
@@ -24,7 +24,7 @@ export async function authLogout() {
 
 export async function authInfo() {
     const res = await http.get<ApiResult<AdminData>>({
-        url: `/auth/info`,
+        url: `/admin/auth/info`,
         params: {},
     });
 
@@ -35,7 +35,7 @@ export async function authInfo() {
 
 export async function authPermission() {
     const res = await http.get<ApiResult<PermissionData[]>>({
-        url: `/auth/permission`,
+        url: `/admin/auth/permission`,
         params: {},
     });
 

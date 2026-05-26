@@ -4,7 +4,7 @@ import http from "@/utils/http";
 
 export async function captchaCreate() {
     const res = await http.get<ApiResult<CaptchaCreate>>({
-        url: `/captcha/create`,
+        url: `/admin/captcha/create`,
         params: {},
     });
 

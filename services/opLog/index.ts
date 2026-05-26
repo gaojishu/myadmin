@@ -4,7 +4,7 @@ import type { SortOrder } from "antd/es/table/interface";
 
 export async function opLogPage(params: null, sort: Record<string, SortOrder>) {
     const res = await http.post<ApiResult<Pageable<OpLogData>>>({
-        url: `/op-log/page`,
+        url: `/admin/op-log/page`,
         params: {},
         data: {
             params, sort
@@ -17,7 +17,7 @@ export async function opLogPage(params: null, sort: Record<string, SortOrder>) {
 
 export async function opLogExport(params: null, sort: Record<string, SortOrder>) {
     const res = await http.post<ApiResult<null>>({
-        url: `/op-log/export`,
+        url: `/admin/op-log/export`,
         params: {},
         data: {
             params, sort

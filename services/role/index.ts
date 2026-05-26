@@ -3,7 +3,7 @@ import http from "@/utils/http";
 
 export async function roleRecords() {
     const res = await http.get<ApiResult<RoleData[]>>({
-        url: `/role/list`,
+        url: `/admin/role/list`,
         params: {},
     });
 
@@ -12,7 +12,7 @@ export async function roleRecords() {
 
 export async function roleUpdate(data: RoleStore) {
     const res = await http.post<ApiResult<RoleData>>({
-        url: `/role/update`,
+        url: `/admin/role/update`,
         params: {},
         data: data,
     });
@@ -22,7 +22,7 @@ export async function roleUpdate(data: RoleStore) {
 
 export async function roleCreate(data: RoleStore) {
     const res = await http.post<ApiResult<RoleData>>({
-        url: `/role/create`,
+        url: `/admin/role/create`,
         params: {},
         data: data,
     });
@@ -32,7 +32,7 @@ export async function roleCreate(data: RoleStore) {
 
 export async function roleDelete(id: string) {
     const res = await http.get<ApiResult<null>>({
-        url: `/role/delete?id=${id}`,
+        url: `/admin/role/delete?id=${id}`,
         params: {},
     });
 

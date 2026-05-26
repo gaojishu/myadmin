@@ -4,7 +4,7 @@ import type { SortOrder } from "antd/es/table/interface";
 
 export async function adminPage(params: null, sort: Record<string, SortOrder>) {
     const res = await http.post<ApiResult<Pageable<AdminData>>>({
-        url: `/admin/page`,
+        url: `/admin/admin/page`,
         params: {},
         data: {
             params, sort
@@ -17,7 +17,7 @@ export async function adminPage(params: null, sort: Record<string, SortOrder>) {
 
 export async function adminCreate(data: AdminCreate) {
     const res = await http.post<ApiResult<null>>({
-        url: `/admin/create`,
+        url: `/admin/admin/create`,
         params: {},
         data: data,
     });
@@ -27,7 +27,7 @@ export async function adminCreate(data: AdminCreate) {
 
 export async function adminUpdate(data: AdminUpdate) {
     const res = await http.post<ApiResult<null>>({
-        url: `/admin/update`,
+        url: `/admin/admin/update`,
         params: {},
         data: data,
     });
@@ -37,7 +37,7 @@ export async function adminUpdate(data: AdminUpdate) {
 
 export async function adminDetail(id: string) {
     const res = await http.get<ApiResult<AdminData>>({
-        url: `/admin/detail?id=${id}`,
+        url: `/admin/admin/detail?id=${id}`,
         params: {},
     });
 

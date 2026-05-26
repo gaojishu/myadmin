@@ -1,13 +1,12 @@
-import type { ApiResult, AdminData, Pageable, AdminCreate, AdminUpdate } from "@/types";
+import type { ApiResult, AdminData, Pageable, AdminCreate, AdminUpdate, AdminSearchParams, PageQuery } from "@/types";
 import http from "@/utils/http";
 import type { SortOrder } from "antd/es/table/interface";
 
-export async function adminPage(params: null, sort: Record<string, SortOrder>) {
+export async function adminPage(params?: AdminSearchParams, page?: PageQuery) {
     const res = await http.post<ApiResult<Pageable<AdminData>>>({
         url: `/admin/admin/page`,
-        params: {},
         data: {
-            params, sort
+            params, page
         },
     });
 

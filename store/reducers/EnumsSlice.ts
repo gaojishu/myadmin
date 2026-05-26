@@ -4,7 +4,7 @@ import type { EnumsData } from '@/types';
 
 const initialState: EnumsData = {
     PermissionTypeEnum: [],
-    AdminDisabledStatusEnum: [],
+    AdminStatusEnum: [],
 };
 
 const EnumsSlice = createSlice({

@@ -4,7 +4,7 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import { ApiResponse } from '@/types';
+import { ApiResult } from '@/types';
 import { message as antdMessage, usePathnameGlobal, useRouterGlobal } from '@/components/GlobalProvider';
 import { store } from '@/store';
 
@@ -33,15 +33,15 @@ instance.interceptors.request.use(config => {
     const data = config.data;
     if (data?.params) {
         // 确保 page 对象存在，避免报错
-        data.page = data.page || {};
+        // data.page = data.page || {};
 
         if (data.params.current !== undefined) {
-            data.page.current = data.params.current;
+            data.page.page = data.params.current;
             delete data.params.current;
         }
 
         if (data.params.pageSize !== undefined) {
-            data.page.pageSize = data.params.pageSize;
+            data.page.size = data.params.pageSize;
             delete data.params.pageSize;
         }
     }
@@ -78,7 +78,7 @@ instance.interceptors.response.use(
         NProgress.done();
 
         const status = error?.response?.status;
-        const message = error?.response?.data?.message || error.message;
+        const message = error?.response?.data?.message || error?.response?.data || error.message;
 
         antdMessage.error(message);
 
@@ -86,7 +86,7 @@ instance.interceptors.response.use(
             useRouterGlobal.push(`/login?redirect=${usePathnameGlobal}`);
         }
 
-        const reason: ApiResponse = {
+        const reason: ApiResult = {
             code: status,
             message: message,
             data: null,

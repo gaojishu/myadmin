@@ -20,14 +20,14 @@ export interface ApiResult<T = any> {
 
 export type TabsTargetKey = React.MouseEvent | React.KeyboardEvent | string | undefined;
 
-export type Page = {
-  number: number,
-  size: number,
-  totalElements: number,
-  totalPages: number,
+export type PageQuery = {
+  page?: number;
+  size?: number;
 }
 
 export interface Pageable<T> {
-  content: T[];
-  page: Page
+  list: T[];
+  total: number;
+  size: number;
+  page: number;
 }

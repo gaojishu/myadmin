@@ -8,24 +8,28 @@ export interface AdminData extends ICommonData {
     email: string | null;
     password: string | null;
     username: string;
-    disabledStatus: number;
+    status: string;
     permission?: PermissionRecord[] | null;
     permissionKey: string[] | null;
 }
 
-export type AdminSortOrder = {
-    id: SortOrder;
+export type AdminSearchParams = {
+    id?: string;
+    username?: string;
+    status?: string;
+    createdAt?: string[];
+    updatedAt?: string[];
 }
 
-export type AdminCreate = Pick<AdminRecord,
+export type AdminCreate = Pick<AdminData,
     'mobile' | 'nickname' | 'email' | 'password' | 'username' | 'permissionKey'
 > & {
-    disabledStatus: number | string,
+    status: string,
     permissionKey: string[]
 }
 
-export type AdminUpdate = Pick<AdminRecord,
+export type AdminUpdate = Pick<AdminData,
     'mobile' | 'nickname' | 'email' | 'password' | 'username' | 'permissionKey' | 'id'
 > & {
-    disabledStatus: number | string
+    status: string
 }

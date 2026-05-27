@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback, useEffect, useState } from 'react';
-import { Button, Card, Divider, Space, Table, TablePaginationConfig, TableProps } from 'antd';
+import { Button, Card, Divider, Space, Table, TableColumnsType, TablePaginationConfig } from 'antd';
 import AntdLayout from '@/components/AntdLayout';
 import { adminPage } from '@/services';
 import type { AdminData, Pageable, AdminSearchParams, PageQuery } from '@/types';
@@ -43,7 +43,7 @@ export default function Page(): React.ReactElement {
         setPage(undefined);
     };
 
-    const column: TableProps<AdminData>['columns'] = [
+    const column: TableColumnsType<AdminData> = [
         {
             title: 'ID',
             dataIndex: 'id',

@@ -1,7 +1,7 @@
 import type { ApiResult, RoleData, RoleStore } from "@/types";
 import http from "@/utils/http";
 
-export async function roleRecords() {
+export async function roleList() {
     const res = await http.get<ApiResult<RoleData[]>>({
         url: `/admin/role/list`,
         params: {},

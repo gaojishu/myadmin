@@ -1,9 +1,9 @@
-import type { ApiResult, PermissionCreate, PermissionUpdate, PermissionData } from "@/types";
+import type { ApiResult, PermissionCreate, PermissionUpdate, PermissionTree, PermissionData } from "@/types";
 import http from "@/utils/http";
 import { buildPermissionRecordTree } from "./permissionService";
 
 export async function permissionTree() {
-    const res = await http.get<ApiResult<PermissionData[]>>({
+    const res = await http.get<ApiResult<PermissionTree[]>>({
         url: `/admin/permission/list`,
         params: {},
     });
@@ -12,7 +12,7 @@ export async function permissionTree() {
     return tree;
 }
 
-export async function permissionCreate(data: PermissionCreate) {
+export async function permissionCreate(data: PermissionData) {
     const res = await http.post<ApiResult<null>>({
         url: `/admin/permission/create`,
         params: {},
@@ -22,7 +22,7 @@ export async function permissionCreate(data: PermissionCreate) {
     return res.data;
 }
 
-export async function permissionUpdate(data: PermissionUpdate) {
+export async function permissionUpdate(data: PermissionData) {
     const res = await http.post<ApiResult<null>>({
         url: `/admin/permission/update`,
         params: {},

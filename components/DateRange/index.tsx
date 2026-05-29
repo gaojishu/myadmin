@@ -1,12 +1,30 @@
 import { DatePicker, type TimeRangePickerProps } from 'antd';
-import dayjs from 'dayjs';
+import dayjs, { type Dayjs } from 'dayjs';
 
 const { RangePicker } = DatePicker;
 
+const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
+
+type DateRangeValue = string[] | null;
+
+type DateRangeProps = Omit<TimeRangePickerProps, 'value' | 'onChange'> & {
+    value?: DateRangeValue;
+    onChange?: (value: DateRangeValue) => void;
+};
+
+function toDayjsRange(value?: DateRangeValue): [Dayjs, Dayjs] | null {
+    if (!value?.[0] || !value?.[1]) return null;
+    const start = dayjs(value[0], DATE_FORMAT);
+    const end = dayjs(value[1], DATE_FORMAT);
+    if (!start.isValid() || !end.isValid()) return null;
+    return [start, end];
+}
 
 export default function DateRange({
+    value,
+    onChange,
     ...props
-}: TimeRangePickerProps) {
+}: DateRangeProps) {
 
     const rangePresets: TimeRangePickerProps['presets'] = [
         { label: '今日', value: [dayjs().startOf('day'), dayjs().endOf('day')] },
@@ -20,20 +38,24 @@ export default function DateRange({
     ];
 
     return (
-        <>
-            <RangePicker
-                {...props}
-                showTime={{
-                    defaultValue: [
-                        dayjs('00:00:00', 'HH:mm:ss'),
-                        dayjs('23:59:59', 'HH:mm:ss')
-                    ],
-                }}
-                format={"YYYY-MM-DD"}
-                presets={rangePresets}
-            />
-
-        </>
-
+        <RangePicker
+            {...props}
+            value={toDayjsRange(value)}
+            onChange={(_, dateStrings) => {
+                if (!dateStrings?.[0] || !dateStrings?.[1]) {
+                    onChange?.(null);
+                    return;
+                }
+                onChange?.(dateStrings);
+            }}
+            showTime={{
+                defaultValue: [
+                    dayjs('00:00:00', 'HH:mm:ss'),
+                    dayjs('23:59:59', 'HH:mm:ss')
+                ],
+            }}
+            format={DATE_FORMAT}
+            presets={rangePresets}
+        />
     );
 };

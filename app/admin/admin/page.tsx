@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback, useEffect, useState } from 'react';
-import { Button, Card, Divider, Space, Table, TableColumnsType, TablePaginationConfig } from 'antd';
+import { Button, Card, Divider, Space, Table, TableColumnsType, TableProps } from 'antd';
 import AntdLayout from '@/components/AntdLayout';
 import { adminPage } from '@/services';
 import type { AdminData, Pageable, AdminSearchParams, PageQuery } from '@/types';
@@ -9,6 +9,7 @@ import { Access } from '@/components/Access';
 import { useRouter } from 'next/navigation';
 import { ReloadOutlined } from '@ant-design/icons';
 import SearchForm from './components/SearchFrom';
+import { SorterResult } from 'antd/es/table/interface';
 
 export default function Page(): React.ReactElement {
     const adminStatusEnum = store.getState().commonEnumsState.AdminStatusEnum;
@@ -92,7 +93,8 @@ export default function Page(): React.ReactElement {
         router.push(`admin/create`)
     };
 
-    const handleTableChange = (pagination: TablePaginationConfig) => {
+    const handleTableChange: TableProps<AdminData>['onChange'] = (pagination, _, sorter) => {
+        const sort = sorter as SorterResult<AdminData>;
         const pageQuery = { page: pagination.current, size: pagination.pageSize };
         setPage(pageQuery);
         fetchData(searchParams, pageQuery);
@@ -133,6 +135,7 @@ export default function Page(): React.ReactElement {
                         showSizeChanger: true,
                     }}
                     onChange={handleTableChange}
+                    scroll={{ x: 'max-content' }}
                 />
 
             </Card>

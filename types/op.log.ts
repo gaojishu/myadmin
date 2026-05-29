@@ -6,6 +6,7 @@ export interface OpLogData extends ICommonData {
     adminId: string | null;
     ip: string | null;
     method: string | null;
+    uri: string | null;
     path: string | null;
     duration: number | null;
     remark: string | null;
@@ -16,5 +17,16 @@ export interface OpLogData extends ICommonData {
 
 export type OpLogSortOrder = {
     id: SortOrder;
+}
+
+export type OpLogSearchParams = {
+    adminId: string | null;
+    ip: string | null;
+    method: string | null;
+    path: string | null;
+    remark: string | null;
+    params: string | null;
+    createdAt: string[] | null;
+    updatedAt: string[] | null;
 }
 

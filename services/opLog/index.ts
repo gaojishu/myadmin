@@ -1,13 +1,11 @@
-import type { ApiResult, Pageable, OpLogData } from "@/types";
+import type { ApiResult, Pageable, OpLogData, PageQuery, OpLogSearchParams } from "@/types";
 import http from "@/utils/http";
-import type { SortOrder } from "antd/es/table/interface";
 
-export async function opLogPage(params: null, sort: Record<string, SortOrder>) {
+export async function opLogPage(params?: OpLogSearchParams, page?: PageQuery) {
     const res = await http.post<ApiResult<Pageable<OpLogData>>>({
-        url: `/admin/op-log/page`,
-        params: {},
+        url: `/admin/oplog/page`,
         data: {
-            params, sort
+            params, page
         },
     });
 
@@ -15,12 +13,12 @@ export async function opLogPage(params: null, sort: Record<string, SortOrder>) {
 }
 
 
-export async function opLogExport(params: null, sort: Record<string, SortOrder>) {
+export async function opLogExport(params?: OpLogSearchParams) {
     const res = await http.post<ApiResult<null>>({
-        url: `/admin/op-log/export`,
+        url: `/admin/oplog/export`,
         params: {},
         data: {
-            params, sort
+            params
         },
     });
 
